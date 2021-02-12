@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.alura.gerenciador.acao.Acao;
 import br.com.alura.gerenciador.acao.AlteraEmpresa;
 import br.com.alura.gerenciador.acao.ListaEmpresa;
+import br.com.alura.gerenciador.acao.Login;
+import br.com.alura.gerenciador.acao.LoginForm;
 import br.com.alura.gerenciador.acao.MostrarEmpresa;
 import br.com.alura.gerenciador.acao.NovaEmpresa;
 import br.com.alura.gerenciador.acao.NovaEmpresaForm;
@@ -31,6 +33,8 @@ public class UnicaEntradaServlert extends HttpServlet {
 	private static final String REMOVE_EMPRESA = "REMOVEEMPRESA";
 	private static final String MOSTRA_EMPRESA = "MOSTRAEMPRESA";
 	private static final String LISTA_EMPRESA = "LISTAEMPRESA";
+	private static final String LOGIN = "LOGIN";
+	private static final String LOGIN_FORM = "LOGINFORM";
 
 	private static final long serialVersionUID = 1L;
 
@@ -46,6 +50,8 @@ public class UnicaEntradaServlert extends HttpServlet {
 		acoes.put(ALTERA_EMPRESA, new AlteraEmpresa());
 		acoes.put(NOVA_EMPRESA, new NovaEmpresa());
 		acoes.put(NOVA_EMPRESA_FORM, new NovaEmpresaForm());
+		acoes.put(LOGIN, new Login());
+		acoes.put(LOGIN_FORM, new LoginForm());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
