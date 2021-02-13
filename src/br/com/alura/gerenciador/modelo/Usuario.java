@@ -52,7 +52,7 @@ public class Usuario {
 		return "Usuario [login=" + login + ", senha= ******* ]";
 	}
 	
-	public boolean ekIgual(String login, String senha) {
+	public boolean ehIgual(String login, String senha) {
 		return this.login.equals(login) && this.senha.equals(senha);
 	}
 

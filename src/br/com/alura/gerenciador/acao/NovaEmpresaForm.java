@@ -11,8 +11,6 @@ public class NovaEmpresaForm implements Acao {
 	public String executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(this);
 		
-		return "Dispatcher:formNovaEmpresa.jsp";
-
-
+		return DISPATCHER+"formNovaEmpresa.jsp";
 	}
 }

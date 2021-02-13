@@ -14,14 +14,13 @@ public class ListaEmpresa implements Acao {
 
 	public String executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(this);
-		String nomeEmpresa = (String) request.getAttribute("nomeEmpresa");
-
+		
 		List<Empresa> empresas = Banco.getListaEmpresas();
 
-		request.setAttribute("nomeEmpresa", nomeEmpresa);
 		request.setAttribute("empresas", empresas);
 		
-		return "Dispatcher:listaEmpresas.jsp";
+		return DISPATCHER+"listaEmpresas.jsp";
+
 		
 	}
 }

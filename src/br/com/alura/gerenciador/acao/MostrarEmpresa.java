@@ -20,7 +20,6 @@ public class MostrarEmpresa implements Acao {
 		Empresa empresa = banco.buscaEmpresa(id);
 		request.setAttribute("empresa", empresa);
 		
-		return "Dispatcher:formAlteraEmpresa.jsp";
-
+		return DISPATCHER+"formAlteraEmpresa.jsp";
 	}
 }

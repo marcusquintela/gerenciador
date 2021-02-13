@@ -1,5 +1,7 @@
 package br.com.alura.gerenciador.acao;
 
+import static br.com.alura.gerenciador.servlet.UnicaEntradaServlert.LISTA_EMPRESA;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -19,7 +21,6 @@ public class RemoveEmpresa implements Acao {
 		Banco banco = new Banco();
 		banco.removeEmpresa(id);
 
-		return "Redirect:entrada?acao=ListaEmpresa";
-
+		return REDIRECT + LISTA_EMPRESA;
 	}
 }

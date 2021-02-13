@@ -62,12 +62,12 @@ public class Banco {
 		empresa.setDataAbertura(novaEmpresa.getDataAbertura());
 	}
 	
-	public boolean validaLogin(String login, String senha) {
+	public Usuario validaLogin(String login, String senha) {
 		for (Usuario u : listaUsuarios) {
-			if(u.getLogin().equals(login) && u.getSenha().equals(senha)) 
-				return true;
+			if(u.ehIgual(login, senha)) 
+				return u;
 		}
-		return false;
+		return null;
 	}
 
 	

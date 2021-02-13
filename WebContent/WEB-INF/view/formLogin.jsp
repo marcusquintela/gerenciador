@@ -11,6 +11,13 @@
 </head>
 <body>
 	<form action="${linkServletEntrada}" method="post">
+		
+		<c:if test="${ not empty erroLogin}">
+			Erro de acesso: ${erroLogin}
+		</c:if>
+		
+		<BR>
+	
 		Login : <input type="text" name="login"><br>
 		Senha: <input type="password" name="senha">
 		

@@ -17,10 +17,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${ not empty nomeEmpresa}">
+
+	Usuário logado: ${usuarioLogado.login }
+
+	<BR>
+	<BR>
+	
+	<c:if test="${ not empty nomeEmpresa}">
 		Empresa ${nomeEmpresa} cadastrada com sucesso!
 	</c:if>
+	
 	<BR>
+	<BR>
+	
 	Lista de Empresas
 	<ul>
 		<c:forEach items="${empresas}" var="empresa">
