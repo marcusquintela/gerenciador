@@ -13,7 +13,6 @@ import br.com.alura.gerenciador.modelo.Banco;
 public class RemoveEmpresa implements Acao {
 
 	public String executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(this);
 		
 		String paramId = request.getParameter("id");
 		Integer id = Integer.parseInt(paramId);

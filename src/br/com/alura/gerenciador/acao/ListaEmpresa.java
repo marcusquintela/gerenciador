@@ -13,7 +13,6 @@ import br.com.alura.gerenciador.modelo.Empresa;
 public class ListaEmpresa implements Acao {
 
 	public String executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(this);
 		
 		List<Empresa> empresas = Banco.getListaEmpresas();
 

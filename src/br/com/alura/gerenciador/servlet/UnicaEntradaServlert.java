@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import br.com.alura.gerenciador.acao.Acao;
 import br.com.alura.gerenciador.acao.AlteraEmpresa;
@@ -49,7 +48,7 @@ public class UnicaEntradaServlert extends HttpServlet {
 
 	public static final String REDIRECT = "REDIRECT";
 
-	private static Map<String, Acao> acoes = new HashMap<>();
+	public static Map<String, Acao> acoes = new HashMap<>();
 
 	static {
 		// Lista das ações existentes do sistema.
@@ -69,19 +68,13 @@ public class UnicaEntradaServlert extends HttpServlet {
 		
 		String paramAcao = request.getParameter("acao");
 		Acao acaoAExecutar = acoes.get(paramAcao.toLowerCase());
-		boolean isAcaoProtegida = acaoAExecutar.getAcaoProtegida();
-		
-		if(isAcaoProtegida) {
-			if(!usuarioLogado(request, response) && isAcaoProtegida)
-				return;
-		}
 		
 		String destino = acaoAExecutar.executar(request, response);
 
 		redireciona(request, response, destino);
 	}
 
-	private void redireciona(HttpServletRequest request, HttpServletResponse response, String destino)
+	public static void redireciona(HttpServletRequest request, HttpServletResponse response, String destino)
 			throws IOException, ServletException {
 		
 		String[] opcoesDestino = destino.split(":");
@@ -93,15 +86,5 @@ public class UnicaEntradaServlert extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_PATH + opcoesDestino[1]);
 			rd.forward(request, response);
 		}
-	}
-
-	private boolean usuarioLogado(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		HttpSession httpSession = request.getSession();
-		boolean usuarioNaoEstaLogado = (null == httpSession.getAttribute(USUARIO_LOGADO));
-		if(usuarioNaoEstaLogado) {
-			redireciona(request, response, Acao.REDIRECT+LOGIN_FORM);		
-			return false;
-		}
-		return true;
 	}
 }

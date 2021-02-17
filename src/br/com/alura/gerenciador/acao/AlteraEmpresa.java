@@ -15,7 +15,6 @@ import br.com.alura.gerenciador.util.UtilData;
 public class AlteraEmpresa implements Acao {
 
 	public String executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(this);
 		
 		String nomeEmpresa = request.getParameter("nome");
 		String dataAbertura = request.getParameter("data");

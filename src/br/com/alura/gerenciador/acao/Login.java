@@ -22,7 +22,6 @@ public class Login implements Acao {
 	@Override
 	public String executar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println(this);
 		
 		HttpSession httpSession = request.getSession();
 		String login = request.getParameter("login");

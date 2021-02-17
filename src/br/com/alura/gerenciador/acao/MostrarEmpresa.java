@@ -12,7 +12,6 @@ import br.com.alura.gerenciador.modelo.Empresa;
 public class MostrarEmpresa implements Acao {
 
 	public String executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(this);
 		String paramId = request.getParameter("id");
 		Integer id = Integer.parseInt(paramId);
 

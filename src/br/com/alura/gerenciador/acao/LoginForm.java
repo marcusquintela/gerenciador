@@ -11,7 +11,6 @@ public class LoginForm implements Acao {
 	@Override
 	public String executar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println(this);
 
 		return DISPATCHER+"formLogin.jsp";
 	}

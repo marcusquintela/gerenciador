@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 public class NovaEmpresaForm implements Acao {
 
 	public String executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(this);
 		
 		return DISPATCHER+"formNovaEmpresa.jsp";
 	}

@@ -18,7 +18,6 @@ public class NovaEmpresa implements Acao {
 	private static final String EMPRESA_SEM_DATA_DE_ABERTURA = "Empresa sem data de abertura!";
 
 	public String executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(this);
 		HttpSession httpSession = request.getSession();
 
 		String nomeEmpresa = request.getParameter("nome");
