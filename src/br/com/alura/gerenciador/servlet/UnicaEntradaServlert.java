@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +24,7 @@ import br.com.alura.gerenciador.acao.RemoveEmpresa;
 /**
  * Servlet implementation class UnicaEntradaServlert
  */
-@WebServlet("/entrada")
+//@WebServlet("/entrada")
 public class UnicaEntradaServlert extends HttpServlet {
 
 	private static final long serialVersionUID = 543457558937710108L;
