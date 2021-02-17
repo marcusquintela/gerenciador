@@ -19,8 +19,11 @@ public class ListaEmpresa implements Acao {
 
 		request.setAttribute("empresas", empresas);
 		
-		return DISPATCHER+"listaEmpresas.jsp";
+		return DISPATCHER+"listaEmpresas.jsp";		
+	}
 
-		
+	@Override
+	public boolean getAcaoProtegida() {
+		return true;
 	}
 }

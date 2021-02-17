@@ -38,11 +38,13 @@ public class Login implements Acao {
 			return REDIRECT+LOGIN_FORM;
 		}
 		
-		httpSession.setAttribute(USUARIO_LOGADO, usuario);
-		
+		httpSession.setAttribute(USUARIO_LOGADO, usuario);		
 		
 		return REDIRECT+LISTA_EMPRESA;		
-
 	}
 
+	@Override
+	public boolean getAcaoProtegida() {
+		return false;
+	}
 }

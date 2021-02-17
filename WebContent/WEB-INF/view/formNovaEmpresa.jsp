@@ -11,6 +11,8 @@
 </head>
 <body>
 	<form action="${linkServletEntrada}" method="post">
+		<c:import url="logout-parcial.jsp"></c:import>
+	
 		Nome: <input type="text" name="nome">
 		Data Abertura: <input type="text" name="data">
 	    <input type="hidden" name="acao" value="${linkNova}">

@@ -15,6 +15,8 @@ import br.com.alura.gerenciador.util.UtilData;
 
 public class NovaEmpresa implements Acao {
 
+	private static final String EMPRESA_SEM_DATA_DE_ABERTURA = "Empresa sem data de abertura!";
+
 	public String executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(this);
 		HttpSession httpSession = request.getSession();
@@ -27,7 +29,7 @@ public class NovaEmpresa implements Acao {
 		novaEmpresa.setDataAbertura(UtilData.converteData(dataAbertura));
 		
 		if(novaEmpresa.getDataAbertura() == null) {
-			throw new ServletException("Empresa sem data de abertura!");
+			throw new ServletException(EMPRESA_SEM_DATA_DE_ABERTURA);
 		}
 
 		Banco banco = new Banco();
@@ -38,5 +40,11 @@ public class NovaEmpresa implements Acao {
 
 		return REDIRECT+LISTA_EMPRESA;
 
+	}
+
+	@Override
+	public boolean getAcaoProtegida() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }

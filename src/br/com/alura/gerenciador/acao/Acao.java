@@ -7,8 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface Acao {
-	public static final String REDIRECT = "Redirect:";
-	public static final String DISPATCHER = "Dispatcher:";
+	public static final String REDIRECT = "REDIRECT:";
+	public static final String DISPATCHER = "DISPATCHER:";
 
 	String executar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException ;
+	boolean getAcaoProtegida();
 }

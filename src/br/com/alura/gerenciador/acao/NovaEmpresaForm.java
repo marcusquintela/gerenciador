@@ -13,4 +13,9 @@ public class NovaEmpresaForm implements Acao {
 		
 		return DISPATCHER+"formNovaEmpresa.jsp";
 	}
+
+	@Override
+	public boolean getAcaoProtegida() {
+		return true;
+	}
 }

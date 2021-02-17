@@ -17,6 +17,7 @@ import br.com.alura.gerenciador.acao.AlteraEmpresa;
 import br.com.alura.gerenciador.acao.ListaEmpresa;
 import br.com.alura.gerenciador.acao.Login;
 import br.com.alura.gerenciador.acao.LoginForm;
+import br.com.alura.gerenciador.acao.Logout;
 import br.com.alura.gerenciador.acao.MostrarEmpresa;
 import br.com.alura.gerenciador.acao.NovaEmpresa;
 import br.com.alura.gerenciador.acao.NovaEmpresaForm;
@@ -30,14 +31,15 @@ public class UnicaEntradaServlert extends HttpServlet {
 
 	private static final long serialVersionUID = 543457558937710108L;
 		
-	public static final String NOVA_EMPRESA_FORM = "NOVAEMPRESAFORM";
-	public static final String NOVA_EMPRESA = "NOVAEMPRESA";
-	public static final String ALTERA_EMPRESA = "ALTERAEMPRESA";
-	public static final String REMOVE_EMPRESA = "REMOVEEMPRESA";
-	public static final String MOSTRA_EMPRESA = "MOSTRAEMPRESA";
-	public static final String LISTA_EMPRESA = "LISTAEMPRESA";
-	public static final String LOGIN = "LOGIN";
-	public static final String LOGIN_FORM = "LOGINFORM";
+	public static final String NOVA_EMPRESA_FORM = "novaempresaform";
+	public static final String NOVA_EMPRESA = "novaempresa";
+	public static final String ALTERA_EMPRESA = "alteraempresa";
+	public static final String REMOVE_EMPRESA = "removeempresa";
+	public static final String MOSTRA_EMPRESA = "mostraempresa";
+	public static final String LISTA_EMPRESA = "listaempresa";
+	public static final String LOGIN = "login";
+	public static final String LOGIN_FORM = "loginform";
+	public static final String LOGOUT = "logout";
 	
 	private static final String WEB_INF_PATH = "WEB-INF/view/";
 	private static final String ENTRADA_ACAO = "entrada?acao=";
@@ -59,15 +61,21 @@ public class UnicaEntradaServlert extends HttpServlet {
 		acoes.put(NOVA_EMPRESA_FORM, new NovaEmpresaForm());
 		acoes.put(LOGIN, new Login());
 		acoes.put(LOGIN_FORM, new LoginForm());
+		acoes.put(LOGOUT, new Logout());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		verificaUsuarioLogado(request, response);
-		
 		String paramAcao = request.getParameter("acao");
-		Acao acaoAExecutar = acoes.get(paramAcao.toUpperCase());
+		Acao acaoAExecutar = acoes.get(paramAcao.toLowerCase());
+		boolean isAcaoProtegida = acaoAExecutar.getAcaoProtegida();
+		
+		if(isAcaoProtegida) {
+			if(!usuarioLogado(request, response) && isAcaoProtegida)
+				return;
+		}
+		
 		String destino = acaoAExecutar.executar(request, response);
 
 		redireciona(request, response, destino);
@@ -80,16 +88,20 @@ public class UnicaEntradaServlert extends HttpServlet {
 		
 		if (opcoesDestino[0].equalsIgnoreCase(REDIRECT)) {
 			response.sendRedirect(ENTRADA_ACAO + opcoesDestino[1]);
+			return;
 		} else {
 			RequestDispatcher rd = request.getRequestDispatcher(WEB_INF_PATH + opcoesDestino[1]);
 			rd.forward(request, response);
 		}
 	}
 
-	private void verificaUsuarioLogado(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	private boolean usuarioLogado(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		HttpSession httpSession = request.getSession();
-		if(null == httpSession.getAttribute(USUARIO_LOGADO)) {			
-			redireciona(request, response, Acao.DISPATCHER+"formLogin.jsp");
+		boolean usuarioNaoEstaLogado = (null == httpSession.getAttribute(USUARIO_LOGADO));
+		if(usuarioNaoEstaLogado) {
+			redireciona(request, response, Acao.REDIRECT+LOGIN_FORM);		
+			return false;
 		}
+		return true;
 	}
 }

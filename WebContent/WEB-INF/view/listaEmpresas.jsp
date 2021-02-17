@@ -8,6 +8,7 @@
 <c:url value='MostraEmpresa' var= "linkMostra"/>
 <c:url value='RemoveEmpresa' var= "linkRemove"/>
 <c:url value='NovaEmpresaForm' var= "linkNova"/>
+<c:url value='logout' var= "linkLogou"/>
 
 
 <!DOCTYPE html>
@@ -19,6 +20,8 @@
 <body>
 
 	Usuário logado: ${usuarioLogado.login }
+	
+	<c:import url="logout-parcial.jsp"></c:import>
 
 	<BR>
 	<BR>

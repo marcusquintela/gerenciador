@@ -19,7 +19,7 @@
 		<BR>
 	
 		Login : <input type="text" name="login"><br>
-		Senha: <input type="password" name="senha">
+		Senha : <input type="password" name="senha">
 		
 	    <input type="hidden" name="acao" value="${linkLogin}">
 	

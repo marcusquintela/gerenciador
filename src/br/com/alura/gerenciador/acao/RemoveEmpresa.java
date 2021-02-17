@@ -23,4 +23,9 @@ public class RemoveEmpresa implements Acao {
 
 		return REDIRECT + LISTA_EMPRESA;
 	}
+
+	@Override
+	public boolean getAcaoProtegida() {
+		return true;
+	}
 }

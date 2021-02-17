@@ -22,4 +22,10 @@ public class MostrarEmpresa implements Acao {
 		
 		return DISPATCHER+"formAlteraEmpresa.jsp";
 	}
+
+	@Override
+	public boolean getAcaoProtegida() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }
